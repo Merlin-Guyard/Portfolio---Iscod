@@ -1,0 +1,105 @@
+// 1. Fonctions Bootstrap (nécessaires avant toute surcharge de variable)
+@import "bootstrap/scss/functions";
+
+// 2. Surcharges des variables par défaut de Bootstrap
+$primary: #1f3c88;
+$secondary: #5c6270;
+$dark: #1c1f26;
+$body-color: #1c1f26;
+$font-family-sans-serif:
+  "Segoe UI",
+  system-ui,
+  -apple-system,
+  sans-serif;
+$border-radius: 0.6rem;
+$navbar-padding-y: 1rem;
+
+// 3. Reste de Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// =========================================================
+// Styles spécifiques au portfolio
+// =========================================================
+
+// Sticky footer : plaque le footer en bas de l'écran même quand
+// le contenu de la page est plus court que la hauteur de la fenêtre.
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#header-placeholder,
+#footer-placeholder {
+  flex-shrink: 0;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.brand-photo {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.hero {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+// Sous-menu "Compétences" ouvert au survol (desktop uniquement ;
+// sur écran tactile le lien du menu principal renvoie vers la page Compétences).
+.dropdown-hover {
+  .dropdown-menu {
+    margin-top: 0;
+  }
+
+  @media (hover: hover) {
+    &:hover > .dropdown-menu {
+      display: block;
+    }
+  }
+}
+
+.card-hover {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--bs-box-shadow);
+  }
+}
+
+// Frise du parcours (pas de composant équivalent dans Bootstrap)
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  border-left: 2px solid var(--bs-border-color);
+  list-style: none;
+}
+
+.timeline__item {
+  position: relative;
+  padding-bottom: 2.5rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -2.4rem;
+    top: 0.25rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bs-primary);
+  }
+}
